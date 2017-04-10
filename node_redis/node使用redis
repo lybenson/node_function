@@ -1,0 +1,10 @@
+基本功能
+1.缓存系统 
+2.数据存储 数据可存储在内存.虚拟内存.外存
+3.消息中介 消息订阅发布
+
+工具
+1.服务启动工具  redis-server
+  redis-server /usr/local/etc/redis.conf 守护进程启动(默认端口6379)
+2.命令行客户端工具  redis-cli
+3.GUI工具

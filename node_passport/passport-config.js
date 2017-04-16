@@ -8,18 +8,23 @@ passport.use(new LocalStrategy(
 			uname: username,
 			psd: password
 		}
-		done(null, user);
+		// done(null, user);
+		return done(null, false, { message: 'Incorrect password.' });
 	}
 ));
 
 // 存储到session调用
 passport.serializeUser(function(user, done) {
-	done(null, user);
+	console.log('1111')
+	done(null, user.uname); //将user.uname存储到session中
 });
 
-// 读取session时调用
-passport.deserializeUser(function (user, done) {
-	console.log('读取session')
+// 读取session时调用。
+passport.deserializeUser(function (uname, done) {
+	var user = {
+		uname: username,
+		psd: '123456'
+	}
 	done(null, user)
 });
 // serializeUser 在用户登录验证成功以后将会把用户的数据存储到 session 中（在这里

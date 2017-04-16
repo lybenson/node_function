@@ -7,13 +7,13 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var expressSession = require('express-session')
 var passport = require('./passport-config');
-
+var flash = require('connect-flash');
 
 
 
 
 var app = express();
-
+app.use(flash())
 app.use(expressSession({
 	secret: 'AccessToken',
   cookie: {

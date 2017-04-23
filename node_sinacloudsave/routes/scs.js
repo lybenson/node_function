@@ -2,7 +2,7 @@
 * @Author: lybenson
 * @Date:   2017-04-10 14:38:21
 * @Last Modified by:   lybenson
-* @Last Modified time: 2017-04-10 15:04:56
+* @Last Modified time: 2017-04-19 14:23:19
 */
 
 var SinaCloud = require('scs-sdk');
@@ -31,6 +31,7 @@ SinaCloud.config.loadFromPath('./config.json');
 //     else
 //         console.log(data);           // successful response
 // });
+
 
 
 // 列出bucket中的文件

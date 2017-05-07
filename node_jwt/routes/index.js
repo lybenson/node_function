@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken')
 
 const secret = 'mysecret'
 
+
 /* GET home page.  return token */
 router.post('/login', function(req, res, next) {
 	var token = jwt.sign({ 

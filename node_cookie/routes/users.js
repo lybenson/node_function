@@ -5,8 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 // res.cookie会将填入Response Header中的Set-Cookie，达到在浏览器中设置cookie的作用
 // res.cookie(name, value [, options]);
-// 参数有: 
-// name: cookie名称; 
+// 参数有:
+// name: cookie名称;
 // value: cookie值;
 // options: 可选参数包括
 // 		domain: cookie在什么域名下有效，类型为String,。默认为网站域名

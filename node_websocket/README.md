@@ -80,8 +80,8 @@ WebSocket  的作用
 2.websock只需要建立一次http握手，这个通讯过程就是建立在这一次连接中的。
 
 
-和socket的区别
-
+和socket.io的区别
+浏览器端对HTML5的支持不一，为了兼容所有浏览器，提供卓越的实时的用户体验，并且为程序员提供客户端与服务端一致的编程体验，于是socket.io诞生。Socket.io将Websocket和轮询 （Polling）机制以及其它的实时通信方式封装成了通用的接口，并且在服务端实现了这些实时机制的相应代码。也就是说，Websocket仅仅是 Socket.io实现实时通信的一个子集
 
 参考文章：
 

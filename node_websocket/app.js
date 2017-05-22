@@ -4,6 +4,11 @@ var wss = new WebSocketServer({
   verifyClient: socketVerify //可选，验证连接函数  
 });
 
+setInterval(function () {
+  wss.broadcast(1, { name: '管理员', msg: Math.random() * 100 });
+}, 3000);
+
+
 function socketVerify(info) {
   // info字段：
   // origin [String]由客户端指示的Origin标头中的值

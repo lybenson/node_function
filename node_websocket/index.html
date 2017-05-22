@@ -8,12 +8,15 @@
   <style>
     #content {
       border: 1px solid red;
-      width: 200px;
-      height: 200px;
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
       padding: 20px;
       text-align: center;
+      overflow: scroll;
     }
   </style>
+
   <script>
     if (typeof (WebSocket) == "undefined") {
       alert("您的浏览器不支持WebSocket");
@@ -61,7 +64,11 @@
     ws.onmessage = function (event) {
       console.log('收到信息: ' + event.data);
       var contentEle = document.getElementById('content')
-      contentEle.innerHTML = '<div>' + event.data + '</div>';
+      var newNode = document.createElement("div");
+      newNode.innerHTML = event.data;
+      contentEle.appendChild(newNode);
+
+      contentEle.scrollTop = contentEle.scrollHeight;
       if (typeof event.data === String) {
         console.log("收到字符串信息");
       }

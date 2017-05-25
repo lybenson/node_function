@@ -1,6 +1,7 @@
 // console.log(new Date())
 // console.log(JSON.stringify(new Date()))
 
+// 阿里云短信生成签名
 
 // console.log(JSON.stringify(new Date()).replace(/\"/g,''))
 

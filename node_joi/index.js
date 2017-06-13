@@ -4,18 +4,19 @@ const schema = {
   a: Joi.string()
 };
 
-Joi.validate({ a: 'a string' }, schema, function (err, value) {
+const value = {
+  a: 'abc'
+}
+Joi.validate(value, schema, function (err, value) {
   console.log("err:" + err);
   console.log("value:" + JSON.stringify(value));
 });
-// err:null
-// value:{"a":"a string"}
 
 
-
-Joi.validate({ a: 100 }, schema, function (err, value) {
+const schema2 = Joi.string().min(10);
+schema2.validate("abcdefghijk", function (err, value) {
   console.log("err:" + err);
-  console.log("value:" + JSON.stringify(value));
-});
-// err:ValidationError: child "a" fails because ["a" must be a string]
-// value:{"a":100}
+  console.log("value:" + value);
+})
+
+

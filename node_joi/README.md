@@ -63,5 +63,5 @@ const schema = Joi.object().keys({
 
 
 
-### API
 
+注：更多api详细请看github仓库地址 https://github.com/hapijs/joi

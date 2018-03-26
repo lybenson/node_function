@@ -12,6 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.15.1"
+    "chalk": "^2.3.2",
+    "commander": "^2.15.1",
+    "inquirer": "^5.2.0",
+    "node-cmd": "^3.0.0",
+    "ora": "^2.0.0"
   }
 }

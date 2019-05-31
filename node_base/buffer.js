@@ -1,3 +1,12 @@
+/**
+在引入 TypedArray 之前，JavaScript 语言没有用于读取或操作二进制数据流的机制。 Buffer 类是作为 Node.js API 的一部分引入的，用于在 TCP 流、文件系统操作、以及其他上下文中与八位字节流进行交互。
+
+Buffer 类的实例类似于整数数组，但对应于 V8 堆外部的固定大小的原始内存分配。 Buffer 的大小在创建时确定，且无法更改。
+
+Buffer 类在全局作用域中，因此无需使用 require('buffer').Buffer。
+
+ */
+
 // 创建一个长度为 10、且用零填充的 Buffer。
 const buf1 = Buffer.alloc(10);
 

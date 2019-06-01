@@ -26,7 +26,6 @@ router.get('/', function(req, res, next) {
 
 	// 删除cookie  res.clearCookie(name [, options]);
 	
-
 	// 利用cookie-parser读取cookie
   res.send('respond with a resource');
 });

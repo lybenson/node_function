@@ -10,5 +10,15 @@ myEmitter.on('event', () => {
 myEmitter.on('event', () => {
   console.log('触发事件2');
 });
+
+
+myEmitter.on('error', (err) => {
+  console.error(err);
+});
+
+myEmitter.emit('error', new Error('错误信息'));
+
 // 触发事件
-myEmitter.emit('event');
+// myEmitter.emit('event');
+
+console.log(myEmitter.listeners('event'))

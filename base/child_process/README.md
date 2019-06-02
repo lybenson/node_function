@@ -1,3 +1,5 @@
+# child_process
+
 child_process是NodeJs的重要模块。帮助我们创建多进程任务，更好的利用了计算机的多核性能。
 
 创建子进程的方式有如下的方式，他们返回 ChildProcess 类的实例都是 EventEmitter，表示衍生的子进程。

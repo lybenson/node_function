@@ -78,7 +78,7 @@ server.listent(3000)
 - `checkExpectation`  每次收到带有 `HTTP Expect` 请求头的请求时触发
 
 
-### http.IncomingMessage
+# http.IncomingMessage
 
 `IncomingMessage` 对象由 `http.Server` 或 `http.ClientRequest` 创建，并分别作为第一个参数传给 'request' 和 'response' 事件。 它可用于访问响应状态、消息头、以及数据。
 
@@ -86,8 +86,100 @@ server.listent(3000)
 
 `http.IncomingMessage` 实现了可读流接口，还有以下额外的事件
 
-- aborted  当请求中止时触发。
-- close  用户当前请求结束时，该事件被触发，不同于end，如果用户强制终止了传输，也是用close
-- data  当请求体数据到来时，该事件被触发，该事件提供一个参数chunk，表示接受的数据，如果该事件没有被监听，则请求体会被抛弃，该事件可能会被调用多次（这与nodejs是异步的有关系）
-- end  当请求体数据传输完毕时，该事件会被触发，此后不会再有数据
+- `aborted`  当请求中止时触发。
+- `close`  用户当前请求结束时，该事件被触发，不同于end，如果用户强制终止了传输，也是用close
+- `data`  当请求体数据到来时，该事件被触发，该事件提供一个参数chunk，表示接受的数据，如果该事件没有被监听，则请求体会被抛弃，该事件可能会被调用多次（这与nodejs是异步的有关系）
+- `end` 当请求体数据传输完毕时，该事件会被触发，此后不会再有数据
 
+`http.IncomingMessage` 属性如下
+
+- `complete`  如果已收到并成功解析完整的 `HTTP` 消息，则 `message.complete` 属性将为 `true`。
+- `httpVersion`  `HTTP` 版本
+- `method`
+- `url`
+- `headers`  请求头
+- `socket`  与连接关联的 `net.Socket` 对象。
+- `statusCode`
+- `statusMessage`
+
+# http.ServerResponse 类 
+
+`ceateServer`方法接受一个函数作为参数，该函数的`response`参数就是`ServerResponse`的实例, 此对象由 HTTP 服务器在内部创建，而不是由用户创建,  它作为第二个参数传给 Server的 'request' 事件。决定了用户最终看到的内容。
+
+
+提供以下事件
+
+- `close`  表明在调用 `response.end()` 或能够刷新之前终止了底层连接。
+- `finish`  响应发送后触发
+
+ServerResponse有三个重要的成员函数，用于返回响应头、响应内容以及结束请求
+
+- `response.writeHead(statusCode[, statusMessage][, headers])`  向请求发送响应头, 状态码是一个 3 位的 HTTP 状态码
+- `response.write(chunk[, encoding][, callback])`  发送响应内内容
+- `response.end([data][, encoding][, callback])`  此方法向服务器发出信号，表明已发送所有响应头和主体，该服务器应该视为此消息已完成。 如果指定了 data，则相当于调用 `response.write(data, encoding)` 之后再调用 `response.end(callback)`。
+
+# HTTP 客户端
+
+`http`模块提供了两个函数`http.request`和`http.get`，功能是作为客户端向`http`服务器发起请求。
+
+```js
+const http = require('http')
+http.get({
+  host: '127.0.0.1',
+  port: 8000,
+  path: '/'
+}, function(response) {
+  let body = '';
+  response.on('data', function(d) {
+    body += d;
+  });
+
+  response.on('end', function() {
+    var parsed = JSON.parse(body);
+    callback({
+      email: parsed.email,
+      password: parsed.pass
+    });
+  });
+});
+
+// or 
+http.request(options[, callback])
+```
+
+`http.request`和`http.get` 返回的都是 http.ClientRequest 类的实例，表示一个已经产生而且正在进行中的HTTP请求，提供一个response事件，也就是我们使用http.get和http.request方法中的回调函数所绑定的对象，我们可以显式地绑定这个事件的监听函数
+
+
+http.ClientRequest也提供了write和end函数，用于向服务器发送请求体，通常用于POST、PUT等操作，所有写操作都必须调用end函数来通知服务器，否则请求无效。此外，这个对象还提供了abort()、setTimeout()等方法
+
+```js
+const http = require('http')
+
+let options = {
+  hostname: '127.0.0.1',
+  port: 8000
+}
+let clientReq = http.request(options)
+clientReq.on('response', res => {
+  res.on('data', chunk => {
+    console.log(chunk.toString())
+  })
+  console.log(res.statusCode)
+})
+
+clientReq.on('error', err => {
+  console.log(err.message)
+})
+clientReq.end()
+```
+
+接收以下事件
+
+- `abort`  当请求被客户端中止时触发。
+- `connect`  每次服务器使用 CONNECT 方法响应请求时都会触发
+- `continue`  当服务器发送 100 Continue HTTP 响应时触发
+- `information`  服务器发送 1xx 响应时触发（不包括 101 Upgrade）
+- `response`  当收到此请求的响应时触发。 此事件仅触发一次。
+- `socket`  将套接字分配给此请求后触发
+- `timeout`  当底层套接字因不活动而超时时触发。 这只会通知套接字已空闲。
+- `upgrade`  每次服务器响应升级请求时发出。

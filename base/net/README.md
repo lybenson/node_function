@@ -1,13 +1,13 @@
 # net 
 
-net 模块用于创建基于流的 TCP 或 IPC 的服务器（net.createServer()）与客户端（net.createConnection()）。
+`net` 模块用于创建基于流的 `TCP` 或 `IPC` 的服务器（`net.createServer()`）与客户端（`net.createConnection()`）。
 
-http.Server继承了net.Server，此外，http客户端与http服务端的通信均依赖于socket（net.Socket）。也就是说，做node服务端编程，net基本是绕不开的一个模块。
+`http.Server`继承了`net.Server`，此外，`http`客户端与`http`服务端的通信均依赖于`socket`（`net.Socket`）
 
-从组成来看，net模块主要包含两部分
+从组成来看，`net`模块主要包含两部分
 
-- net.Server：TCP server，内部通过socket来实现与客户端的通信。
-- net.Socket：tcp/本地 socket的node版实现，它实现了全双工的stream接口
+- `net.Server`：`TCP server`，内部通过`socket`来实现与客户端的通信。
+- `net.Socket`：tcp/本地 `socket`的`node`版实现，它实现了全双工的stream接口
 
 简单示例
 
@@ -64,3 +64,12 @@ client.on('close', function(data){
 
 client.end('你好，我是客户端');
 ```
+
+# net.Server
+
+用于创建 `TCP` 或 `IPC server`
+
+# net.Socket
+
+此类是 TCP 套接字或流式 IPC 端点的抽象（在 Windows 上使用命名管道，否则使用 UNIX 域套接字）。 net.Socket 也是双工流，因此它既可读也可写，也是一个 EventEmitter。
+

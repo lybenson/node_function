@@ -183,3 +183,8 @@ clientReq.end()
 - `socket`  将套接字分配给此请求后触发
 - `timeout`  当底层套接字因不活动而超时时触发。 这只会通知套接字已空闲。
 - `upgrade`  每次服务器响应升级请求时发出。
+
+
+# http.Agent
+
+// TODO

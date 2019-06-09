@@ -20,3 +20,5 @@ const v8 = require('v8')
 - [https://github.com/v8/v8](https://github.com/v8/v8)
 
 - [https://www.youtube.com/watch?v=PsDqH_RKvyc](https://www.youtube.com/watch?v=PsDqH_RKvyc)
+
+- [https://medium.com/free-code-camp/understanding-the-core-of-nodejs-the-powerful-chrome-v8-engine-79e7eb8af964](https://medium.com/free-code-camp/understanding-the-core-of-nodejs-the-powerful-chrome-v8-engine-79e7eb8af964)
